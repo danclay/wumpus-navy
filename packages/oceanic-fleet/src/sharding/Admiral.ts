@@ -10,7 +10,7 @@ export interface LibClientStatus {
 }
 
 export class AdaptedAdmiral extends carrier.Admiral<Oceanic.Client, typeof Oceanic.Client, Oceanic.ClientOptions, Oceanic.LatencyRef, LibClientStatus> {
-	constructor(options: carrier.Options<typeof Oceanic.Client, Oceanic.ClientOptions, LibClientStatus>) {
+	constructor(options: carrier.Options<typeof Oceanic.Client, Oceanic.ClientOptions, LibClientStatus, Oceanic.Client, Oceanic.LatencyRef>) {
 		super(options);
 		this.AdaptedCluster = AdaptedCluster;
 		this.clientOptions = options.clientOptions ?? {gateway: {intents: Oceanic.Constants.AllNonPrivilegedIntents}} satisfies Oceanic.ClientOptions;

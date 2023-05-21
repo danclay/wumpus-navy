@@ -13,7 +13,7 @@ export const serialize = (data: unknown): any => {
 			if (value === null) return value;
 		
 			if (value instanceof Error) {
-				return "ERROR::" + serializeError(value);
+				return "ERROR::" + JSON.stringify(serializeError(value)); // since serialize-error leaves with json
 			} else if (value instanceof Map) {
 				return "MAP::" + JSON.stringify(Array.from(value.entries()));
 			} else if (Buffer.isBuffer(value)) {
@@ -36,15 +36,15 @@ export const deserialize = (s: string): any => {
 	return JSON.parse(s, (key, value) => {
 		if (typeof value === "string") {
 			if (value.startsWith("BIGINT::")) {
-				return BigInt(value.substring(8)); 
+				return BigInt(value.substring("BIGINT::".length)); 
 			} else if (value.startsWith("UNDEFINED::")) {
 				return undefined;
 			} else if (value.startsWith("ERROR::")) {
-				return deserializeError(value.substring(7));
+				return deserializeError(JSON.parse(value.substring("ERROR::".length)));
 			} else if (value.startsWith("MAP::")) {
-				return new Map(JSON.parse(value.substring(5)));
+				return new Map(JSON.parse(value.substring("MAP::".length)));
 			} else if (value.startsWith("BUFFER::")) {
-				return Buffer.from(JSON.parse(value.substring(8)));
+				return Buffer.from(JSON.parse(value.substring("BUFFER::".length)));
 			}
 		}
 		return value;

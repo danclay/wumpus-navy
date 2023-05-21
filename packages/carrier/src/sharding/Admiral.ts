@@ -27,13 +27,13 @@ interface FakeWorker {
 	send: (message: any) => void
 }
 
-export interface ServiceCreator {
+export interface ServiceCreator<LibLatencyRef> {
 	/** Unique name of the service */
 	name: string;
 	/** Absolute path to the service (class should extend {@link BaseServiceWorker}) */
 	path?: string;
 	/** Your ServiceWorker class (must extend {@link BaseServiceWorker}) */
-	ServiceWorker?: typeof BaseServiceWorker
+	ServiceWorker?: typeof BaseServiceWorker<LibLatencyRef>
 }
 
 export interface ObjectLog {
@@ -85,11 +85,11 @@ export interface ReshardOptions {
 }
 
 /** Options for the sharding manager */
-export interface Options<LibClientType, LibClientOptions, LibClientStatus> {
+export interface Options<LibClientType, LibClientOptions, LibClientStatus, LibClient, LibLatencyRef> {
 	/** Absolute path to the js file */
 	path?: string;
 	/** Your BotWorker class (must extend {@link BaseClusterWorker}) */
-	BotWorker?: typeof BaseClusterWorker
+	BotWorker?: typeof BaseClusterWorker<LibClient, LibLatencyRef>
 	/** Bot token */
 	token: string;
 	/** 
@@ -137,7 +137,7 @@ export interface Options<LibClientType, LibClientOptions, LibClientStatus> {
 	 */
 	statsInterval?: number | "disable";
 	/** Services to start by name and path */
-	services?: ServiceCreator[];
+	services?: ServiceCreator<LibLatencyRef>[];
 	/** First shard ID to use on this instance of eris-fleet */
 	firstShardID?: number;
 	/** Last shard ID to use on this instance of eris-fleet */
@@ -421,7 +421,7 @@ export class Admiral<LibClient, LibClientType, LibClientOptions, LibLatencyRef, 
 	/** Path used when starting clusters */
 	public path?: string;
 	/** BotWorker class used when starting clusters */
-	public BotWorker?: typeof BaseClusterWorker;
+	public BotWorker?: typeof BaseClusterWorker<LibClient, LibLatencyRef>;
 	/** @internal */
 	public token?: string;
 	public guildsPerShard: number | "auto";
@@ -442,7 +442,7 @@ export class Admiral<LibClient, LibClientType, LibClientOptions, LibLatencyRef, 
 	/** Current stats */
 	public stats?: Stats<LibLatencyRef>;
 	/** Services to create */
-	private servicesToCreate?: ServiceCreator[];
+	private servicesToCreate?: ServiceCreator<LibLatencyRef>[];
 	private queue: Queue;
 	/** Eris client used to get the gateway information and to send requests when using the central request handler */
 	public bot?: LibClient;
@@ -488,7 +488,7 @@ export class Admiral<LibClient, LibClientType, LibClientOptions, LibLatencyRef, 
 	 * Creates the sharding manager
 	 * @param options Options to configure the sharding manager
 	*/
-	public constructor(options: Options<LibClientType, LibClientOptions, LibClientStatus>) {
+	public constructor(options: Options<LibClientType, LibClientOptions, LibClientStatus, LibClient, LibLatencyRef>) {
 		super();
 		this.objectLogging = options.objectLogging ?? false;
 		this.path = options.path;
@@ -1832,7 +1832,7 @@ export class Admiral<LibClient, LibClientType, LibClientOptions, LibLatencyRef, 
 	 */
 	public createService(serviceName: string, service: string | typeof BaseServiceWorker): void {
 		// if path is not absolute
-		const serviceCreator: ServiceCreator = {
+		const serviceCreator: ServiceCreator<LibLatencyRef> = {
 			name: serviceName
 		};
 		if (typeof service === "string") {
@@ -2047,11 +2047,11 @@ export class Admiral<LibClient, LibClientType, LibClientOptions, LibLatencyRef, 
 	 * Updates the BotWorker used by eris-fleet. The new class will be used the next time clusters are restarted.
 	 * @param BotWorker BotWorker class to update with
 	 */
-	public updateBotWorker(BotWorker: typeof BaseClusterWorker): void {
+	public updateBotWorker(BotWorker: typeof BaseClusterWorker<LibClient, LibLatencyRef>): void {
 		this.BotWorker = BotWorker;
 	}
 
-	private async startService(servicesToStart?: ServiceCreator[], onlyServices?: boolean) {
+	private async startService(servicesToStart?: ServiceCreator<LibLatencyRef>[], onlyServices?: boolean) {
 		if (!servicesToStart) servicesToStart = this.servicesToCreate;
 		if (servicesToStart) {
 			const queueItems: QueueItem[] = [];

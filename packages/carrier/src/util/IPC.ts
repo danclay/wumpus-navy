@@ -518,7 +518,7 @@ export class IPC<LibLatencyRef> extends EventEmitter {
 	 * .catch((error) => this.ipc.error(error));
 	 * ```
 	*/
-	public clusterCommand(clusterID: string, message?: unknown, receptive?: boolean, returnTimeout?: number): Promise<any> | void {
+	public clusterCommand(clusterID: number, message?: unknown, receptive?: boolean, returnTimeout?: number): Promise<any> | void {
 		if (!message) message = null;
 		if (!receptive) receptive = false;
 		const UUID = crypto.randomUUID();

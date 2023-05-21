@@ -6,7 +6,7 @@ import { LibClientStatus } from "../sharding/Admiral";
 export class AdaptedCluster extends Carrier.Cluster<Client, typeof Client, ClientOptions, LatencyRef, LibClientStatus> {
 	private LibClient: typeof Client;
 
-	constructor(input: Carrier.ClusterInput<typeof Client>) {
+	constructor(input: Carrier.ClusterInput<typeof Client, Client, LatencyRef>) {
 		super(input);
 		this.LibClient = input.LibClient;
 	}

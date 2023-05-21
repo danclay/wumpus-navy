@@ -5,11 +5,11 @@ import {inspect} from "util";
 import {LoggingOptions} from "../sharding/Admiral";
 import { IPC } from "../util/IPC";
 
-export interface ClusterInput<LibClientType> {
+export interface ClusterInput<LibClientType, LibClient, LibLatencyRef> {
 	LibClient: LibClientType;
 	fetchTimeout: number;
 	overrideConsole: boolean;
-	BotWorker?: typeof BaseClusterWorker;
+	BotWorker?: typeof BaseClusterWorker<LibClient, LibLatencyRef>;
 }
 
 /** @internal */
@@ -27,13 +27,13 @@ export class Cluster<LibClient, LibClientType, LibClientOptions, LibLatencyRef, 
 	bot?: LibClient;
 	token?: string;
 	app?: BaseClusterWorker<LibClient, LibLatencyRef>;
-	App?: typeof BaseClusterWorker;
+	App?: typeof BaseClusterWorker<LibClient, LibLatencyRef>;
 	ipc: IPC<LibLatencyRef>;
 	shuttingDown?: boolean;
 	startingStatus?: LibClientStatus;
 	loadClusterCodeImmediately!: boolean;
 	resharding!: boolean;
-	BotWorker?: typeof BaseClusterWorker;
+	BotWorker?: typeof BaseClusterWorker<LibClient, LibLatencyRef>;
 	connect?(): Promise<void>;
 	//public handleCommand?(data: any): any;
 	disconnect?(): Promise<void>;
@@ -43,7 +43,7 @@ export class Cluster<LibClient, LibClientType, LibClientOptions, LibLatencyRef, 
 	fetchMember?(guildID: string, memberID: string): Promise<any | undefined>;
 	collectStats?(): Promise<any | undefined>;
 
-	constructor(input: ClusterInput<LibClientType>) {
+	constructor(input: ClusterInput<LibClientType, LibClient, LibLatencyRef>) {
 		this.BotWorker = input.BotWorker;
 		// add ipc
 		this.ipc = new IPC({fetchTimeout: input.fetchTimeout});
@@ -243,7 +243,7 @@ export class Cluster<LibClient, LibClientType, LibClientOptions, LibLatencyRef, 
 		//let App = (await import(this.path)).default;
 		//App = App.default ? App.default : App;
 		try {
-			this.app = new this.App!<LibClient, LibLatencyRef>({bot: this.bot!, clusterID: this.clusterID!, workerID: nodeCluster.worker!.id, ipc: this.ipc});
+			this.app = new this.App!({bot: this.bot!, clusterID: this.clusterID!, workerID: nodeCluster.worker!.id, ipc: this.ipc});
 			if (!this.app) return;
 			if (process.send) process.send({op: "codeLoaded"});
 		} catch (e) {

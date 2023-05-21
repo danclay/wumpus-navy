@@ -9,7 +9,7 @@ export interface LibClientStatus {
 }
 
 export class AdaptedAdmiral extends carrier.Admiral<Eris.Client, typeof Eris.Client, Eris.ClientOptions, Eris.LatencyRef, LibClientStatus> {
-	constructor(options: carrier.Options<typeof Eris.Client, Eris.ClientOptions, LibClientStatus>) {
+	constructor(options: carrier.Options<typeof Eris.Client, Eris.ClientOptions, LibClientStatus, Eris.Client, Eris.LatencyRef>) {
 		super(options);
 		this.AdaptedCluster = AdaptedCluster;
 		this.clientOptions = options.clientOptions ?? {intents: Eris.Constants.Intents.allNonPrivileged} satisfies Eris.ClientOptions;

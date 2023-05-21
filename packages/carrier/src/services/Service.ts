@@ -5,10 +5,10 @@ import { IPC } from "../util/IPC";
 import { LoggingOptions, ServiceCreator } from "../sharding/Admiral";
 import { ServiceConnectMessage } from "../util/Queue";
 
-interface ServiceInput {
+interface ServiceInput<LibLatencyRef> {
 	fetchTimeout: number;
 	overrideConsole: boolean;
-	servicesToCreate: ServiceCreator[];
+	servicesToCreate: ServiceCreator<LibLatencyRef>[];
 }
 
 export class Service<LibLatencyRef> {
@@ -21,7 +21,7 @@ export class Service<LibLatencyRef> {
 	connectedTimestamp?: number;
 	private ServiceWorker?: typeof BaseServiceWorker;
 
-	constructor(input: ServiceInput) {
+	constructor(input: ServiceInput<LibLatencyRef>) {
 		this.ipc = new IPC({fetchTimeout: input.fetchTimeout});
 
 		if (input.overrideConsole) {
@@ -54,7 +54,7 @@ export class Service<LibLatencyRef> {
 					this.whatToLog = connectMessage.whatToLog;
 
 					if (!this.path) {
-						this.ServiceWorker = input.servicesToCreate.find(s => s.name === this.serviceName)!.ServiceWorker;
+						this.ServiceWorker<LibLatencyRef> = input.servicesToCreate.find(s => s.name === this.serviceName)!.ServiceWorker;
 					}
 					this.loadCode();
 					break;

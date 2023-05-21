@@ -7,7 +7,7 @@ const Service = carrier.Service as typeof carrier.Service<Oceanic.LatencyRef>;
 const IPC = carrier.IPC as typeof carrier.IPC<Oceanic.LatencyRef>;
 const BaseClusterWorker = carrier.BaseClusterWorker as typeof carrier.BaseClusterWorker<Oceanic.Client, Oceanic.LatencyRef>;
 const BaseServiceWorker = carrier.BaseServiceWorker as typeof carrier.BaseServiceWorker<Oceanic.LatencyRef>;
-type Options = carrier.Options<typeof Oceanic.Client, Oceanic.ClientOptions, LibClientStatus>;
+type Options = carrier.Options<typeof Oceanic.Client, Oceanic.ClientOptions, LibClientStatus, Oceanic.Client, Oceanic.LatencyRef>;
 type Stats = carrier.Stats<Oceanic.LatencyRef>;
 type ClusterStats = carrier.ClusterStats<Oceanic.LatencyRef>;
 

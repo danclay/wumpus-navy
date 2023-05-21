@@ -7,19 +7,22 @@
     "wumpus-carrier": "*"
   },
   "devDependencies": {
+    "@jest/globals": "^29.5.0",
+    "@types/babel__core": "^7.20.0",
+    "@types/jest": "^29.5.1",
     "@types/node": "^18.15.11",
     "@types/ws": "^8.5.4",
     "eris": "~0.17.2",
     "eslint-config-common": "*",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.1.0",
     "typescript": "^5.0.4"
   },
   "peerDependencies": {
     "eris": "~0.17.2"
   },
   "scripts": {
-    "test": "node --trace-uncaught test/CI/index.js",
-    "prepublishOnly": "yarn build && yarn typedoc",
-    "build": "tsc",
-    "dev": "yarn build && node test/dev/index.js"
+    "test": "jest",
+    "build": "tsc"
   }
 }

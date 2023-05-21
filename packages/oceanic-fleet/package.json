@@ -17,9 +17,6 @@
     "oceanic.js": "^1.6.0"
   },
   "scripts": {
-    "test": "node --trace-uncaught test/CI/index.js",
-    "prepublishOnly": "yarn build && yarn typedoc",
-    "build": "tsc",
-    "dev": "yarn build && node test/dev/index.js"
+    "build": "tsc"
   }
 }
