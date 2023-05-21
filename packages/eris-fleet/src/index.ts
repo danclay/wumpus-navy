@@ -12,7 +12,7 @@ type Stats = carrier.Stats<Eris.LatencyRef>;
 type ClusterStats = carrier.ClusterStats<Eris.LatencyRef>;
 
 // Export methods without generics
-export {SoftKillNotification, ShardStats, ServiceStats, ObjectLog, ReshardOptions, LoggingOptions, ClusterCollection, ServiceCollection, ServiceCreator, ShardUpdate, CentralStore, Collection} from "wumpus-carrier";
+export {Serialization, SoftKillNotification, ShardStats, ServiceStats, ObjectLog, ReshardOptions, LoggingOptions, ClusterCollection, ServiceCollection, ServiceCreator, ShardUpdate, CentralStore, Collection} from "wumpus-carrier";
 
 // no more generics :)
 export {Service, IPC, BaseClusterWorker, BaseServiceWorker, Options, Stats, ClusterStats};
