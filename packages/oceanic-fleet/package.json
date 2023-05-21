@@ -1,0 +1,25 @@
+{
+  "name": "oceanic-fleet",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "dependencies": {
+    "wumpus-carrier": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.11",
+    "@types/ws": "^8.5.4",
+    "eslint-config-common": "*",
+    "oceanic.js": "^1.6.0",
+    "typescript": "^5.0.4"
+  },
+  "peerDependencies": {
+    "oceanic.js": "^1.6.0"
+  },
+  "scripts": {
+    "test": "node --trace-uncaught test/CI/index.js",
+    "prepublishOnly": "yarn build && yarn typedoc",
+    "build": "tsc",
+    "dev": "yarn build && node test/dev/index.js"
+  }
+}

@@ -1,0 +1,14 @@
+{
+    "excludeInternal": true,
+	"visibilityFilters": {
+        "protected": true,
+        "private": true,
+        "inherited": true,
+        "external": true,
+        "@alpha": true,
+        "@beta": true
+    },
+    "readme": "./README.md",
+	"includeVersion": true,
+	"gaID": ""
+}

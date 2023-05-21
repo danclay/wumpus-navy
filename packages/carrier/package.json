@@ -1,0 +1,21 @@
+{
+  "name": "wumpus-carrier",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^18.15.11",
+    "@types/ws": "^8.5.4",
+    "eslint-config-common": "*",
+    "typescript": "^5.0.4"
+  },
+  "scripts": {
+    "test": "node --trace-uncaught test/CI/index.js",
+    "prepublishOnly": "yarn build && yarn typedoc",
+    "build": "tsc",
+    "dev": "yarn build && node test/dev/index.js"
+  },
+  "dependencies": {
+    "serialize-error": "^8.1.0"
+  }
+}

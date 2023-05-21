@@ -1,0 +1,17 @@
+{
+  "name": "wumpus-navy",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "danclay <18021681+danclay@users.noreply.github.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^6.6.1"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "dependencies": {
+    "typedoc": "^0.24.7"
+  }
+}
