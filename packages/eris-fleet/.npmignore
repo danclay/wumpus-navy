@@ -12,6 +12,7 @@ docs
 sider.yml
 .gitattributes
 test/
+*.config.js
 
 # Logs
 logs
