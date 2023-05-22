@@ -22,6 +22,7 @@ export interface Setup {
 
 /** Handles the central data store's IPC functions */
 export class CentralStore {
+	/** @internal */
 	private ipc: IPC<unknown>;
 
 	/** @internal */

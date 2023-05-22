@@ -6,12 +6,11 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
-    "lerna": "^6.6.1"
+    "lerna": "^6.6.1",
+    "typedoc": "^0.24.7"
   },
   "workspaces": [
     "packages/*"
   ],
-  "dependencies": {
-    "typedoc": "^0.24.7"
-  }
+  "dependencies": {}
 }

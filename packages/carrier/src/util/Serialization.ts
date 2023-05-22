@@ -1,5 +1,8 @@
 import {serializeError, deserializeError} from "serialize-error";
 
+/**
+ * Used internally for serialization by carrier.
+ */
 export const serialize = (data: unknown): any => {
 	return JSON.stringify(data, (key, value) => {
 		switch(typeof value) {
@@ -32,6 +35,9 @@ export const serialize = (data: unknown): any => {
 	});
 };
 
+/**
+ * Used internally for deserialization by carrier.
+ */
 export const deserialize = (s: string): any => {
 	return JSON.parse(s, (key, value) => {
 		if (typeof value === "string") {
@@ -50,27 +56,3 @@ export const deserialize = (s: string): any => {
 		return value;
 	});
 };
-
-// Unused for now
-/*export const IPCSerializer = (data: unknown): string => {
-	return "CEREAL::" + serialize(data); // fun label
-};
-
-export const IPCDeserializer = (input: unknown) => {
-	if (typeof input === "string") {
-		if (input.startsWith("CEREAL::")) {
-			return deserialize(input.substring(9));
-		}
-	}
-	return input;
-};
-
-export const IPCListen = (callback: (m: any) => void) => {
-	return process.on("message", m => {
-		callback(IPCDeserializer(m));
-	});
-};
-
-export const IPCSend = (m: any) => {
-	return process.send!(IPCSerializer(m));
-};*/

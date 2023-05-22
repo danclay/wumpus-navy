@@ -1,6 +1,6 @@
 {
 	"entryPointStrategy": "packages",
-	"entryPoints": ["packages/eris-fleet", "packages/oceanic-fleet"],
+	"entryPoints": ["packages/eris-fleet", "packages/oceanic-fleet", "packages/carrier"],
 	"out": "docs",
 	"includeVersion": false,
 	"extends": ["./typedoc.base.json"],

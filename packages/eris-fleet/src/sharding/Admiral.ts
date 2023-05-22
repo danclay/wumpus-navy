@@ -1,4 +1,5 @@
 import * as carrier from "wumpus-carrier";
+import {Admiral} from "wumpus-carrier";
 import * as Eris from "eris";
 import nodeCluster, {Worker as NodeWorker} from "cluster";
 import { AdaptedCluster } from "../clusters/Cluster";
@@ -8,6 +9,7 @@ export interface LibClientStatus {
 	activities?: Eris.ActivityPartial<Eris.BotActivityType>[];
 }
 
+/** See {@link wumpus-carrier!Admiral} for further documentation. */
 export class AdaptedAdmiral extends carrier.Admiral<Eris.Client, typeof Eris.Client, Eris.ClientOptions, Eris.LatencyRef, LibClientStatus> {
 	constructor(options: carrier.Options<typeof Eris.Client, Eris.ClientOptions, LibClientStatus, Eris.Client, Eris.LatencyRef>) {
 		super(options);
