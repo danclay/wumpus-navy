@@ -4,7 +4,7 @@
   "main": "dist/index.js",
   "license": "MIT",
   "dependencies": {
-    "wumpus-carrier": "*"
+    "wumpus-carrier": "^0.0.1"
   },
   "devDependencies": {
     "@types/node": "^18.15.11",
