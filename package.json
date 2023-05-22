@@ -12,5 +12,8 @@
   "workspaces": [
     "packages/*"
   ],
-  "dependencies": {}
+  "dependencies": {},
+  "scripts": {
+    "pub": "npx lerna publish --no-private --no-push"
+  }
 }
