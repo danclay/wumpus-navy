@@ -6201,6 +6201,11 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==
 
+typedoc-plugin-no-inherit@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/typedoc-plugin-no-inherit/-/typedoc-plugin-no-inherit-1.4.0.tgz#8eafc790588f63f0a24621b646219cd6e8d6e4d6"
+  integrity sha512-cAvqQ8X9xh1xztVoDKtF4nYRSBx9XwttN3OBbNNpA0YaJSRM8XvpVVhugq8FoO1HdWjF3aizS0JzdUOMDt0y9g==
+
 typedoc@^0.24.7:
   version "0.24.7"
   resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.24.7.tgz#7eeb272a1894b3789acc1a94b3f2ae8e7330ee39"

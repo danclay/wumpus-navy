@@ -1,6 +1,9 @@
 import {IPC} from "../util/IPC";
 
-/** @internal */
+/** 
+ * Just pass this through to super()
+ * @internal
+ */
 export interface Setup<LibClient, LibLatencyRef> {
 	bot: LibClient;
 	clusterID: number;

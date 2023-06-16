@@ -22,7 +22,7 @@
     "typescript": "^5.0.4"
   },
   "peerDependencies": {
-    "eris": "~0.17.2"
+    "eris": "~0.17.0"
   },
   "scripts": {
     "test": "jest",

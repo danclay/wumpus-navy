@@ -9,7 +9,10 @@ export interface LibClientStatus {
 	activities?: Eris.ActivityPartial<Eris.BotActivityType>[];
 }
 
-/** See {@link wumpus-carrier!Admiral} for further documentation. */
+/**
+ * ***See {@link wumpus-carrier!Admiral} for full documentation.***
+ * @noInheritDoc
+ */
 export class AdaptedAdmiral extends carrier.Admiral<Eris.Client, typeof Eris.Client, Eris.ClientOptions, Eris.LatencyRef, LibClientStatus> {
 	constructor(options: carrier.Options<typeof Eris.Client, Eris.ClientOptions, LibClientStatus, Eris.Client, Eris.LatencyRef>) {
 		super(options);
@@ -35,9 +38,12 @@ export class AdaptedAdmiral extends carrier.Admiral<Eris.Client, typeof Eris.Cli
 		this.launch();
 	}
 
+	/** @internal */
 	getCentralRequestHandlerLatencyRef() {
 		return this.bot!.requestHandler.latencyRef;
 	}
+
+	/** @internal */
 	async getBotGateway() {
 		const gateway = await this.bot!.getBotGateway();
 		return {
@@ -52,6 +58,7 @@ export class AdaptedAdmiral extends carrier.Admiral<Eris.Client, typeof Eris.Cli
 		};
 	}
 
+	/** @internal */
 	private centralApiRequest(worker: NodeWorker, UUID: string, data: {method: Eris.RequestMethod, url: string, auth?: boolean, body?: { [s: string]: unknown }, file?: Eris.FileContent, fileString?: string, _route?: string, short?: boolean}) {
 		const reply = (resolved: boolean, value: unknown) => {
 			const valueSerialized = carrier.Serialization.serialize(value);

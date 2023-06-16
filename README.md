@@ -1,3 +1,5 @@
-This is the mono-repo for eris-fleet, oceanic-fleet, and their backend wumpus-carrier (name may change). See their respective documentation for more information.
+This is the mono-repo for eris-fleet, oceanic-fleet, and their backend wumpus-carrier.
 
-Note: This has yet to be released and a test workflow is being worked on.
+[Documentation](https://danclay.github.io/wumpus-navy/)
+
+*Note: The documentation page for each specific Discord library will only contain library-specific methods. General clustering methods are under the "wumpus-carrier" section in the documentation.*

@@ -7,13 +7,15 @@
   "private": true,
   "devDependencies": {
     "lerna": "^6.6.1",
-    "typedoc": "^0.24.7"
+    "typedoc": "^0.24.7",
+    "typedoc-plugin-no-inherit": "^1.4.0"
   },
   "workspaces": [
     "packages/*"
   ],
   "dependencies": {},
   "scripts": {
-    "pub": "npx lerna run build && npx lerna publish --no-private --no-push"
+    "pub": "npm run build && npx lerna publish --no-private --no-push",
+    "build": "npx lerna run build"
   }
 }

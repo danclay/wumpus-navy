@@ -1,14 +1,13 @@
 {
     "excludeInternal": true,
 	"visibilityFilters": {
-        "protected": true,
-        "private": true,
-        "inherited": true,
-        "external": true,
+        "private": false,
+        "inherited": false,
+        "external": false,
         "@alpha": true,
         "@beta": true
     },
-    "readme": "./README.md",
 	"includeVersion": true,
-	"gaID": ""
+	"gaID": "",
+    "plugin": ["typedoc-plugin-no-inherit"]
 }

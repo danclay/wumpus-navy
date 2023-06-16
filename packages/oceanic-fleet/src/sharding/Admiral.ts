@@ -9,6 +9,10 @@ export interface LibClientStatus {
 	activities?: Oceanic.BotActivity[];
 }
 
+/**
+ * ***See {@link wumpus-carrier!Admiral} for full documentation.***
+ * @noInheritDoc
+ */
 export class AdaptedAdmiral extends carrier.Admiral<Oceanic.Client, typeof Oceanic.Client, Oceanic.ClientOptions, Oceanic.LatencyRef, LibClientStatus> {
 	constructor(options: carrier.Options<typeof Oceanic.Client, Oceanic.ClientOptions, LibClientStatus, Oceanic.Client, Oceanic.LatencyRef>) {
 		super(options);
@@ -43,14 +47,18 @@ export class AdaptedAdmiral extends carrier.Admiral<Oceanic.Client, typeof Ocean
 		this.launch();
 	}
 
+	/** @internal */
 	getCentralRequestHandlerLatencyRef() {
 		return this.bot!.rest.handler.latencyRef;
 	}
+
+	/** @internal */
 	async getBotGateway() {
 		const gateway = await this.bot!.rest.getBotGateway();
 		return gateway;
 	}
 
+	/** @internal */
 	private centralApiRequest(worker: NodeWorker, UUID: string, data: Oceanic.RequestOptions) {
 		const reply = (resolved: boolean, value: unknown) => {
 			worker.send({
