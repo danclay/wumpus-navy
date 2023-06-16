@@ -1,8 +1,11 @@
 {
   "name": "wumpus-carrier",
+  "description": "Non-library specific cluster manager for Discord bot libraries. Backend for eris-fleet and oceanic-fleet. Requires adaptation for libraries.",
+  "author": "danclay (https://github.com/danclay)",
+  "license": "MIT",
+  "repository": "https://github.com/danclay/wumpus-navy",
   "version": "0.0.1",
   "main": "dist/index.js",
-  "license": "MIT",
   "devDependencies": {
     "@jest/globals": "^29.5.0",
     "@types/babel__core": "^7.20.0",

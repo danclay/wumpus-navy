@@ -1,8 +1,11 @@
 {
   "name": "oceanic-fleet",
+  "description": "Cluster management for Discord bots using the Oceanic library. Inspired by eris-sharder and @brussell98/megane.",
+  "author": "danclay (https://github.com/danclay)",
+  "license": "MIT",
+  "repository": "https://github.com/danclay/wumpus-navy",
   "version": "0.0.1",
   "main": "dist/index.js",
-  "license": "MIT",
   "dependencies": {
     "wumpus-carrier": "^0.0.1"
   },
@@ -18,5 +21,16 @@
   },
   "scripts": {
     "build": "tsc"
-  }
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "clustering",
+    "sharding",
+    "oceanic",
+    "oceanic.js",
+    "oceanic sharder",
+    "oceanic.js sharder",
+    "discord sharder"
+  ]
 }
