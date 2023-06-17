@@ -57,7 +57,7 @@ Run `npm install oceanic-fleet` or with yarn: `yarn add oceanic-fleet`.
 
 # Basics
 
-Some working examples are in [examples/](https://github.com/danclay/wumpus-navy/tree/master/examples).
+Some working examples are in [examples/](https://github.com/danclay/wumpus-navy/tree/main/packages/examples).
 
 ## Naming Conventions
 | Term | Description |
