@@ -15,7 +15,7 @@
   ],
   "dependencies": {},
   "scripts": {
-    "pub": "npm run build && npx lerna publish --no-private --no-push",
+    "pub": "npx lerna run build && npx lerna publish --no-private --no-push",
     "build": "npx lerna run build"
   }
 }
