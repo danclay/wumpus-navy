@@ -2,4 +2,4 @@ This contains an example of a bot using eris-fleet with one service. It uses cla
 
 This is written in Typescript and the code is under src/.
 
-[See Github for the example](https://github.com/danclay/wumpus-navy/tree/main/packages/oceanic-fleet)
+[See Github for the example](https://github.com/danclay/wumpus-navy/tree/main/packages/examples)
