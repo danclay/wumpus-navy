@@ -3,26 +3,43 @@ import * as Eris from "eris";
 import { LibClientStatus } from "./sharding/Admiral";
 
 // Export methods without generics
-export {Serialization, SoftKillNotification, ShardStats, ServiceStats, ObjectLog, ReshardOptions, LoggingOptions, ClusterCollection, ServiceCollection, ServiceCreator, ShardUpdate, CentralStore, Collection, BaseClusterWorkerSetup, BaseServiceWorkerSetup} from "wumpus-carrier";
+export {Serialization, SoftKillNotification, ShardStats, ServiceStats, ObjectLog, ReshardOptions, LoggingOptions, ClusterCollection, ServiceCollection, ServiceCreator, ShardUpdate, CentralStore, Collection} from "wumpus-carrier";
 
 // Add types
 /** 
  * ***See {@link wumpus-carrier!Options} for full documentation.***
  * @noInheritDoc
 */
-export type Options = carrier.Options<typeof Eris.Client, Eris.ClientOptions, LibClientStatus, Eris.Client, Eris.LatencyRef>;
+export interface Options extends carrier.Options<typeof Eris.Client, Eris.ClientOptions, LibClientStatus, Eris.Client, Eris.LatencyRef> {
+}
 
 /** 
  * ***See {@link wumpus-carrier!Stats} for full documentation.***
  * @noInheritDoc
  */
-export type Stats = carrier.Stats<Eris.LatencyRef>;
+export interface Stats extends carrier.Stats<Eris.LatencyRef>{
+}
 
 /** 
  * ***See {@link wumpus-carrier!ClusterStats} for full documentation.***
  * @noInheritDoc
  */
-export type ClusterStats = carrier.ClusterStats<Eris.LatencyRef>;
+export interface ClusterStats extends carrier.ClusterStats<Eris.LatencyRef> {
+}
+
+/** 
+ * ***See {@link wumpus-carrier!BaseClusterWorkerSetup} for full documentation.***
+ * @noInheritDoc
+ */
+export interface BaseClusterWorkerSetup extends carrier.BaseClusterWorkerSetup<Eris.Client, Eris.LatencyRef> {
+}
+
+/** 
+ * ***See {@link wumpus-carrier!BaseServiceWorkerSetup} for full documentation.***
+ * @noInheritDoc
+ */
+export interface BaseServiceWorkerSetup extends carrier.BaseServiceWorkerSetup<Eris.LatencyRef> {
+}
 
 // Export adapted classes
 export {AdaptedAdmiral as Fleet} from "./sharding/Admiral";

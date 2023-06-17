@@ -3,7 +3,7 @@ import * as Oceanic from "oceanic.js";
 import { LibClientStatus } from "./sharding/Admiral";
 
 // Export methods without generics
-export {Serialization, SoftKillNotification, ShardStats, ServiceStats, ObjectLog, ReshardOptions, LoggingOptions, ClusterCollection, ServiceCollection, ServiceCreator, ShardUpdate, CentralStore, Collection, BaseClusterWorkerSetup, BaseServiceWorkerSetup} from "wumpus-carrier";
+export {Serialization, SoftKillNotification, ShardStats, ServiceStats, ObjectLog, ReshardOptions, LoggingOptions, ClusterCollection, ServiceCollection, ServiceCreator, ShardUpdate, CentralStore, Collection} from "wumpus-carrier";
 
 // Add types
 /** 
@@ -25,6 +25,20 @@ export interface Stats extends carrier.Stats<Oceanic.LatencyRef> {
  * @noInheritDoc
  */
 export interface ClusterStats extends carrier.ClusterStats<Oceanic.LatencyRef> {
+}
+
+/** 
+ * ***See {@link wumpus-carrier!BaseClusterWorkerSetup} for full documentation.***
+ * @noInheritDoc
+ */
+export interface BaseClusterWorkerSetup extends carrier.BaseClusterWorkerSetup<Oceanic.Client, Oceanic.LatencyRef> {
+}
+
+/** 
+ * ***See {@link wumpus-carrier!BaseServiceWorkerSetup} for full documentation.***
+ * @noInheritDoc
+ */
+export interface BaseServiceWorkerSetup extends carrier.BaseServiceWorkerSetup<Oceanic.LatencyRef> {
 }
 
 // Export adapted classes

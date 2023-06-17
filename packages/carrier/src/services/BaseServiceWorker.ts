@@ -2,7 +2,6 @@ import {IPC} from "../util/IPC";
 
 /** 
  * Just pass this through to super()
- * @internal
  */
 export interface Setup<LibLatencyRef> {
 	serviceName: string;
