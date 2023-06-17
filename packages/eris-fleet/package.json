@@ -15,7 +15,7 @@
     "@types/jest": "^29.5.1",
     "@types/node": "^18.15.11",
     "@types/ws": "^8.5.4",
-    "eris": "~0.17.2",
+    "eris": "~0.17.0",
     "eslint-config-common": "*",
     "jest": "^29.5.0",
     "ts-jest": "^29.1.0",
