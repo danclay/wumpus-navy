@@ -68,6 +68,8 @@ Some working examples are in [examples/](https://github.com/danclay/wumpus-navy/
 | "Cluster" | A worker containing an Eris client |
 | "Service" | A worker that does not contain an Eris client, but can interact with clusters |
 
+"Fleet" and "Admiral" are used interchangeably as they were meant to be separate components which ended up being the same. The only time you encounter "Fleet" is when using `new Fleet()` (see examples below) which is actually just an alias for the "Admiral" class. This is unlikely to be updated as this naming caveat has persisted for too long.
+
 ## Get Started
 To get started, you will need at least 2 files:
 1. Your file which will create the Fleet. This will be called "index.js" for now.
