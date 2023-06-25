@@ -8,6 +8,6 @@
         "@beta": true
     },
 	"includeVersion": true,
-	"gaID": "",
+	"gaID": "G-JSKFC9JPLR",
     "plugin": ["typedoc-plugin-no-inherit"]
 }
