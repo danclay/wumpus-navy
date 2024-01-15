@@ -4,7 +4,7 @@
   "author": "danclay (https://github.com/danclay)",
   "license": "MIT",
   "repository": "https://github.com/danclay/wumpus-navy",
-  "version": "2.0.0-alpha.1",
+  "version": "2.0.0",
   "main": "dist/index.js",
   "dependencies": {
     "wumpus-carrier": "^0.0.2"
