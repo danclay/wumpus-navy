@@ -40,7 +40,7 @@ export interface ObjectLog {
 	source?: string;
 	timestamp: number;
 	message: unknown;
-} 
+}
 
 /** Possible options to put in the logging options array */
 export type LoggingOptions = "gateway_shards" |
@@ -92,46 +92,46 @@ export interface Options<LibClientType, LibClientOptions, LibClientStatus, LibCl
 	BotWorker?: typeof BaseClusterWorker<LibClient, LibLatencyRef>
 	/** Bot token */
 	token: string;
-	/** 
+	/**
 	 * Guilds per shard. "auto" uses the gateway's recommended shard count.
 	 * @defaultValue "auto"
 	 */
 	guildsPerShard?: number | "auto";
-	/** 
+	/**
 	 * Number of shards
 	 * @defaultValue "auto"
 	 */
 	shards?: number | "auto";
-	/** 
+	/**
 	 * Number of clusters
 	 * @defaultValue "auto"
 	 */
 	clusters?: number | "auto";
-	/** 
+	/**
 	 * Options to pass to the Eris client constructor.
 	 * Intents default to all non-privileged intents.
 	 */
 	clientOptions?: LibClientOptions;
-	/** 
+	/**
 	 * How long to wait for shards to connect to discord
-	 * 
+	 *
 	 * @deprecated Use the `connectionTimeout` property of {@link Options.clientOptions}
 	 * @ignore No longer supported
 	 */
 	timeout?: number;
-	/** 
+	/**
 	 * How long to wait for a service to start
 	 * @defaultValue 0
 	 */
 	serviceTimeout?: number;
-	/** 
+	/**
 	 * How long between starting clusters
 	 * @defaultValue 5e3
 	 */
 	clusterTimeout?: number;
 	/** Node arguments to pass to the clusters */
 	nodeArgs?: string[];
-	/** 
+	/**
 	 * How often to update the stats after all clusters are spawned (set to "disable" to disable automated stats)
 	 * @defaultValue 60e3
 	 */
@@ -142,16 +142,16 @@ export interface Options<LibClientType, LibClientOptions, LibClientStatus, LibCl
 	firstShardID?: number;
 	/** Last shard ID to use on this instance of eris-fleet */
 	lastShardID?: number;
-	/** 
+	/**
 	 * Option to have less logging show up
 	 * @defaultValue false
 	 */
 	lessLogging?: boolean;
-	/** 
+	/**
 	 * Allows for more logging customization (overrides generic lessLogging option)
-	 * 
+	 *
 	 * @see {@link LoggingOptions} See for available options
-	 * 
+	 *
 	 * @example
 	 * ```js
 	 * const options = {
@@ -169,12 +169,12 @@ export interface Options<LibClientType, LibClientOptions, LibClientStatus, LibCl
 		/** Blacklist of what to log */
 		blacklist?: LoggingOptions[];
 	};
-	/** 
+	/**
 	 * Amount of time to wait in ms before doing a forced shutdown during shutdowns
 	 * @defaultValue 10e3
 	 */
 	killTimeout?: number;
-	/** 
+	/**
 	 * Whether to split the source in to an Object
 	 * @defaultValue false
 	 * @see {@link ObjectLog} See for the object which is given in the logging event if this option is enabled
@@ -182,14 +182,14 @@ export interface Options<LibClientType, LibClientOptions, LibClientStatus, LibCl
 	objectLogging?: boolean;
 	/** Custom starting status */
 	startingStatus?: LibClientStatus;
-	/** 
+	/**
 	 * How long to wait in ms before giving up on a fetch (includes eval functions and commands)
 	 * @defaultValue 10e3
 	 */
 	fetchTimeout?: number;
 	/** Extended eris client class (should extend Eris.Client) */
 	customClient?: LibClientType;
-	/** 
+	/**
 	 * Whether to use a central request handler.
 	 * The central request handler routes Eris requests to the Discord API through a single instance of the Eris RequestHandler.
 	 * This helps prevent 429 errors from the Discord API by using a single rate limiter pool.
@@ -203,7 +203,7 @@ export interface Options<LibClientType, LibClientOptions, LibClientStatus, LibCl
 	 * @defaultValue false
 	 */
 	loadCodeImmediately?: boolean;
-	/** 
+	/**
 	 * Whether to override console.log, console.debug, console.warn, and console.error in clusters and services
 	 * @defaultValue true
 	 */
@@ -361,7 +361,7 @@ export interface GetBotGateway {
 	url: string;
 }
 
-/** 
+/**
  * The sharding manager.
  * @example
  * ```js
@@ -370,26 +370,26 @@ export interface GetBotGateway {
  * const path = require('path');
  * const { inspect } = require('util');
  * require('dotenv').config();
- * 
+ *
  * const options = {
  * 	path: path.join(__dirname, "./bot.js"),
  * 	token: process.env.token
  * }
- * 
+ *
  * const Admiral = new Fleet(options);
- * 
+ *
  * if (isMaster) {
  * 	// Code to only run for your master process
  * 	Admiral.on('log', m => console.log(m));
  * 	Admiral.on('debug', m => console.debug(m));
  * 	Admiral.on('warn', m => console.warn(m));
  * 	Admiral.on('error', m => console.error(inspect(m)));
- * 
+ *
  * 	// Logs stats when they arrive
  * 	Admiral.on('stats', m => console.log(m));
  * }
  * ```
- * 
+ *
  * @fires Admiral#log Message to log. Supplies either a message or an {@link ObjectLog}.
  * @fires Admiral#debug Debug message to log. Supplies either a message or an {@link ObjectLog}.
  * @fires Admiral#warn Warning message to log. Supplies either a message or an {@link ObjectLog}.
@@ -411,7 +411,7 @@ export class Admiral<LibClient, LibClientType, LibClientOptions, LibLatencyRef, 
 	public clusters!: Collection<number, ClusterCollection>;
 	/** Map of services by name */
 	public services: Collection<string, ServiceCollection>;
-	/** 
+	/**
 	 * IPC for the Admiral which functions like the worker IPC classes.
 	 * Has some redundant functions which already exist on the Admiral class.
 	 */
@@ -484,7 +484,7 @@ export class Admiral<LibClient, LibClientType, LibClientOptions, LibLatencyRef, 
 	/** @internal */
 	public getCentralRequestHandlerLatencyRef?(): LibLatencyRef;
 
-	/** 
+	/**
 	 * Creates the sharding manager
 	 * @param options Options to configure the sharding manager
 	*/
@@ -818,7 +818,7 @@ export class Admiral<LibClient, LibClientType, LibClientOptions, LibLatencyRef, 
 									timestamp: new Date().getTime()
 								});
 								this.collectingStats = false;
-								
+
 								if (this.whatToLog.includes("stats_update")) {
 									this.log("Stats updated.", "Admiral");
 								}
@@ -932,7 +932,7 @@ export class Admiral<LibClient, LibClientType, LibClientOptions, LibLatencyRef, 
 							this.servicesSequentialFailedRestarts.set(service.serviceName, totalRestarts + 1);
 						}
 					}
-					
+
 					const restartItem = this.restartWorker(worker);
 					if (restartItem) this.queue.item(restartItem);
 				}
@@ -1002,7 +1002,7 @@ export class Admiral<LibClient, LibClientType, LibClientOptions, LibLatencyRef, 
 											return "Worker " + item.workerID;
 										}
 									};
-									this.warn("Safe shutdown failed for " + name() + ". Preformed hard shutdown instead.", "Admiral");
+									this.warn("Safe shutdown failed for " + name() + ". Performed hard shutdown instead.", "Admiral");
 									if (this.softKills.get(item.workerID)) {
 										this.softKills.get(item.workerID)?.fn(true);
 									}
@@ -1123,7 +1123,7 @@ export class Admiral<LibClient, LibClientType, LibClientOptions, LibLatencyRef, 
 							},
 						},
 					});
-					
+
 					logSourced("warn", `The cluster I requested (${message.command.clusterID}) is unavailable.`);
 				}
 			} else {
@@ -1163,7 +1163,7 @@ export class Admiral<LibClient, LibClientType, LibClientOptions, LibLatencyRef, 
 							},
 						},
 					});
-					
+
 					logSourced("warn", `The cluster I requested (${message.command.clusterID}) is unavailable.`);
 				}
 			});
@@ -1191,7 +1191,7 @@ export class Admiral<LibClient, LibClientType, LibClientOptions, LibLatencyRef, 
 							},
 						},
 					});
-					
+
 					logSourced("warn", `The cluster I requested (${message.request.clusterID}) is unavailable.`);
 				}
 			} else {
@@ -1232,7 +1232,7 @@ export class Admiral<LibClient, LibClientType, LibClientOptions, LibLatencyRef, 
 							},
 						},
 					});
-					
+
 					logSourced("warn", `The service I requested (${message.request.serviceName}) is unavailable.`);
 				}
 			} else {
@@ -1272,7 +1272,7 @@ export class Admiral<LibClient, LibClientType, LibClientOptions, LibLatencyRef, 
 							},
 						},
 					});
-					
+
 					logSourced("warn", `The cluster I requested (${message.request.clusterID}) is unavailable.`);
 				}
 			});
@@ -1321,7 +1321,7 @@ export class Admiral<LibClient, LibClientType, LibClientOptions, LibLatencyRef, 
 						value: stats,
 					});
 				});
-							
+
 			break;
 		}
 		case "broadcast": {
@@ -1698,7 +1698,7 @@ export class Admiral<LibClient, LibClientType, LibClientOptions, LibLatencyRef, 
 			sendReturn(message.value);
 		}
 	}
-	
+
 	/**
 	 * Restarts a specific cluster
 	 * @param clusterID ID of the cluster to restart
@@ -1775,7 +1775,7 @@ export class Admiral<LibClient, LibClientType, LibClientOptions, LibLatencyRef, 
 						if (restartItem) queueItems.push(restartItem);
 					}
 				}
-		
+
 				// run
 				if (completed >= this.services.size) {
 					this.queue.bulkItems(queueItems);
@@ -1820,7 +1820,7 @@ export class Admiral<LibClient, LibClientType, LibClientOptions, LibLatencyRef, 
 		}
 	}
 
-	/** 
+	/**
 	 * Create a service
 	 * @param serviceName Unique ame of the service
 	 * @param service Absolute path to the service file or your ServiceWorker class (extends {@link BaseServiceWorker})
@@ -1844,7 +1844,7 @@ export class Admiral<LibClient, LibClientType, LibClientOptions, LibLatencyRef, 
 		} else {
 			serviceCreator.ServiceWorker = service;
 		}
-		
+
 		this.startService([serviceCreator], true);
 		// add to creation array
 		if (this.servicesToCreate) {
@@ -2004,7 +2004,7 @@ export class Admiral<LibClient, LibClientType, LibClientOptions, LibLatencyRef, 
 	}
 
 	/**
-	 * Broadcast an event to all clusters and services. 
+	 * Broadcast an event to all clusters and services.
 	 * The event can be listened to with {@link IPC.register}
 	 * @param op Name of the event
 	 * @param message Message to send
@@ -2066,7 +2066,7 @@ export class Admiral<LibClient, LibClientType, LibClientOptions, LibLatencyRef, 
 					path: service.path,
 					serviceName: service.name,
 				}); */
-	
+
 				this.launchingWorkers.set(worker.id, {
 					service: {
 						path: service.path,
@@ -2074,7 +2074,7 @@ export class Admiral<LibClient, LibClientType, LibClientOptions, LibLatencyRef, 
 						workerID: worker.id,
 					},
 				});
-	
+
 				queueItems.push({
 					type: "service",
 					workerID: worker.id,
@@ -2152,7 +2152,7 @@ export class Admiral<LibClient, LibClientType, LibClientOptions, LibLatencyRef, 
 
 			const cluster = this.launchingWorkers.find((w: WorkerCollection) => w.cluster?.clusterID === ID)!.cluster!;
 
-			
+
 			queueItems.push({
 				type: "cluster",
 				workerID: cluster.workerID,
@@ -2177,14 +2177,20 @@ export class Admiral<LibClient, LibClientType, LibClientOptions, LibLatencyRef, 
 			// to show debug info
 			clusterInfoArr.push(`${cluster.clusterID}:${cluster.firstShardID}-${cluster.lastShardID}`);
 		}
-		
+
 		if (this.whatToLog.includes("shards_spread")) this.log(`All shards spread! (${clusterInfoArr.join(",")})`, "Admiral");
 		this.queue.bulkItems(queueItems);
 	}
 
 	private async calculateShards() {
 		let shards = this.shardCount;
-		const gateway = await this.getBotGateway!();
+		let gateway;
+		try {
+			gateway = await this.getBotGateway!();
+		} catch (e) {
+			this.error("Unable to acquire bot gateway, bot token potentially incorrect?");
+			process.exit(1);
+		}
 		if (!this.maxConcurrencyOverride) this.maxConcurrency = gateway.sessionStartLimit.maxConcurrency;
 		if (this.whatToLog.includes("gateway_shards")) {
 			this.log(`Gateway recommends ${gateway.shards} shards. Using ${this.maxConcurrency} max concurrency.`, "Admiral");
@@ -2314,7 +2320,7 @@ export class Admiral<LibClient, LibClientType, LibClientOptions, LibLatencyRef, 
 		};
 		if (cluster) {
 			if (soft) {
-				// Preform soft shutdown
+				// Perform soft shutdown
 				this.softKills.set(worker.id, {
 					fn: (failed?: boolean) => {
 						if (!customMaps) {
@@ -2351,7 +2357,7 @@ export class Admiral<LibClient, LibClientType, LibClientOptions, LibLatencyRef, 
 			item.type = "cluster";
 		} else if (service) {
 			if (soft) {
-				// Preform soft shutdown
+				// Perform soft shutdown
 				this.softKills.set(worker.id, {
 					fn: () => {
 						if (this.whatToLog.includes("service_shutdown")) this.log(`Safely shutdown service ${service!.serviceName}`, "Admiral");
@@ -2410,7 +2416,7 @@ export class Admiral<LibClient, LibClientType, LibClientOptions, LibLatencyRef, 
 				}
 			});
 			if (soft) {
-				// Preform soft restart
+				// Perform soft restart
 				this.pauseStats = true;
 				this.softKills.set(newWorker.id, {
 					fn: () => {
@@ -2420,15 +2426,15 @@ export class Admiral<LibClient, LibClientType, LibClientOptions, LibLatencyRef, 
 								softKillNotificationPeriod: this.softKillNotificationPeriod,
 								killTime: Date.now() + this.softKillNotificationPeriod,
 								clusterID: cluster.clusterID
-							};	
+							};
 							this.emit("softRestartPending", notif);
 							if (this.broadcastAdmiralEvents) {
 								this.broadcast("softRestartPending", notif);
 							} else {
 								this.ipc.sendTo(cluster.clusterID, "softRestartPending", notif);
 							}
-						}	
-						
+						}
+
 						setTimeout(() => {
 							this.softKills.delete(newWorker.id);
 							if (this.whatToLog.includes("cluster_restart")) {
@@ -2505,7 +2511,7 @@ export class Admiral<LibClient, LibClientType, LibClientOptions, LibLatencyRef, 
 				}
 			});
 			if (soft) {
-				// Preform soft restart
+				// Perform soft restart
 				this.softKills.set(newWorker.id, {
 					fn: () => {
 						this.softKills.delete(newWorker.id);
